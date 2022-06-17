@@ -8,7 +8,7 @@ import 'package:fapp_shell/_main.dart';
 
 //This is the server token taken from the firebase project.
 const String serverToken =
-    'AAAAEike9qQ:APA91bG9AvlSWWaMIZy-jybRs--uMgc7Ybjz7_wavGloY3ArfrZ1eDMcj-FDt2hRUrInmIo4_872rqjHouOi7vr-IgYSqxqZH04uXJqdWJBehY_O_SwKBUiI078xkYFN2aFraaYEu3o4';
+    'AAAAEike9qQ:APA91bG9AvlSWWaMIZy-jybRs...';
 
 class SendNotificationView extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
