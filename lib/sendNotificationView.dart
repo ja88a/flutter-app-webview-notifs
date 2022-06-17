@@ -1,27 +1,30 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:fapp_shell/main.dart';
+import 'package:fapp_shell/_main.dart';
 
 //This is the server token taken from the firebase project.
-final String serverToken =
+const String serverToken =
     'AAAAEike9qQ:APA91bG9AvlSWWaMIZy-jybRs--uMgc7Ybjz7_wavGloY3ArfrZ1eDMcj-FDt2hRUrInmIo4_872rqjHouOi7vr-IgYSqxqZH04uXJqdWJBehY_O_SwKBUiI078xkYFN2aFraaYEu3o4';
 
 class SendNotificationView extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final FirebaseMessaging _firebaseMessaging;
 
-  SendNotificationView(this._firebaseMessaging);
+  SendNotificationView(this._firebaseMessaging, {Key? key}) : super(key: key);
 
-  TextEditingController _teController = new TextEditingController();
+  final TextEditingController _teController = TextEditingController();
   String finalUrl = '';
 
   Future<Map<String, dynamic>> sendAndRetrieveMessage() async {
     //change isSender to true
     isSender = true;
-    print('LOG: You are about to send a message');
+    if (kDebugMode) {
+      print('LOG: You are about to send a message');
+    }
     // await _firebaseMessaging.requestNotificationPermissions(
     //   const IosNotificationSettings(
     //       sound: true, badge: true, alert: true, provisional: false),
@@ -41,6 +44,7 @@ class SendNotificationView extends StatelessWidget {
               'body': finalUrl,
               'title': finalUrl,
               'click_action': 'FLUTTER_NOTIFICATION_CLICK',
+              'type': 'test',
             },
             'priority': 'high',
             'data': <String, dynamic>{
@@ -64,7 +68,7 @@ class SendNotificationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: new EdgeInsets.fromLTRB(15, 0, 0, 0),
+      margin: const EdgeInsets.fromLTRB(15, 0, 0, 0),
       child: Form(
         key: _formKey,
         child: Column(
@@ -76,7 +80,9 @@ class SendNotificationView extends StatelessWidget {
                 hintText: 'Enter your URL',
               ),
               validator: (value) {
-                print('LOG: Validator value = $value');
+                if (kDebugMode) {
+                  print('LOG: Validator value = $value');
+                }
                 if (value!.isEmpty) {
                   return 'Please enter your text';
                 } else if (!value.startsWith("https://")) {
@@ -94,7 +100,7 @@ class SendNotificationView extends StatelessWidget {
                   print('LOG Finalurl $finalUrl');
                   if (_formKey.currentState!.validate()) {
                     // Process data.
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text('Sending URL to other devices')));
                     sendAndRetrieveMessage();
                   }
@@ -102,7 +108,7 @@ class SendNotificationView extends StatelessWidget {
                   // Validate will return true if the form is valid, or false if
                   // the form is invalid.
                 },
-                child: Text('Send'),
+                child: const Text('Send'),
               ),
             ),
           ],

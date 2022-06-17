@@ -14,6 +14,8 @@ Expected features:
 
 STATUS: *IN PROGRESS - Experimental*
 
+Dev project initiated in March 2022.
+
 
 ## Requirements
 
@@ -21,9 +23,9 @@ STATUS: *IN PROGRESS - Experimental*
 
 * Dart 2.16+
 * Flutter SDK &amp; CLI 2.10+
-* Android SDK &amp;, Studio or dev tools CLI
+* Android SDK &amp;, Studio and/or CLI dev tools
 * VTx Emulators and/or hardware test devices
-* Apple Xcode
+* Apple Xcode dev tools, iOS emulator (macos) or ios devices
 * Firebase project
 * Gradle 7.2+ &amp; Java JDK
 

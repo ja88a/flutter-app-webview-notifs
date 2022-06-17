@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'main.dart';
-import 'model/message.dart';
+import 'package:fapp_shell/_main.dart';
+import 'package:fapp_shell/model/message.dart';
 
 class FirebaseMessagingWidget extends StatefulWidget {
   final List<NotificationMessage> messages;
@@ -23,12 +23,11 @@ class FirebaseMessagingWidgetState extends State<FirebaseMessagingWidget> {
   Widget build(BuildContext context) {
     return Container(
         width: double.infinity,
-        margin: new EdgeInsets.fromLTRB(0, 10, 0, 0),
+        margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
         child: Text('Current URL: $url',
-            style: TextStyle(fontSize: 16,),
+            style: const TextStyle(fontSize: 16,),
             textAlign: TextAlign.center
         ),
     );
-
   }
 }
